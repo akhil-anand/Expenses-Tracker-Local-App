@@ -1,12 +1,13 @@
 import { FlatList, StyleSheet, Text, View } from 'react-native'
 import React from 'react'
 
-const ExpensesLists = () => {
-    return (
-        <View>
-            <FlatList />
-        </View>
-    )
+const renderExpenseItem = (itemData) => {
+ return <Text>{itemData.item.description}</Text>
+}
+
+const ExpensesLists = ({expenses}) => {
+    return <FlatList data={expenses} renderItem={renderExpenseItem} keyExtractor={(item) => item.id}/>
+   
 }
 
 export default ExpensesLists
