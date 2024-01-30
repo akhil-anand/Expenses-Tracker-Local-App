@@ -1,5 +1,5 @@
 import { StyleSheet, Text, View } from 'react-native'
-import React, { useReducer } from 'react'
+import React, { createContext, useReducer } from 'react'
 
 const DUMMY_EXPENSES = [
     {
@@ -61,6 +61,12 @@ const DUMMY_EXPENSES = [
         description: 'Another book',
         amount: 18.59,
         date: new Date('2022-02-18')
+    },
+    {
+        id: 'e1',
+        description: 'Another book',
+        amount: 18.59,
+        date: new Date('2024-01-30')
     }
 ]
 
@@ -89,7 +95,7 @@ const expenseReducer = (state, action) => {
     }
 }
 
-const ExpensesContextProvider = ({ children }) => {
+const ExpenseContextProvider = ({ children }) => {
     const [expensesState, dispatch] = useReducer(expenseReducer, DUMMY_EXPENSES)
 
     const addExpense = (expenseData) => {
@@ -102,11 +108,14 @@ const ExpensesContextProvider = ({ children }) => {
         dispatch({type: 'UPDATE', payload: {id, data: expenseData}})
     }
 
+    const value = {
+        expenses: expensesState,
+        addExpense: addExpense,
+        deleteExpense: deleteExpense,
+        updateExpense: updateExpense
+    }    
+        return <ExpenseContext.Provider value={value}>{children}</ExpenseContext.Provider>
 }
 
-const ExpenseContextProvider = ({children}) => {
-    useReducer();
-    return <ExpenseContext.Provider>{children}</ExpenseContext.Provider>
-}
 
 export default ExpenseContextProvider;
