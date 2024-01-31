@@ -51,7 +51,7 @@ const ExpensesOverview = () => {
 export default function App() {
   return (
     <>
-      <StatusBar />
+      <StatusBar style='light'/>
       <ExpenseContextProvider>
 
         <NavigationContainer>

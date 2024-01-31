@@ -5,7 +5,7 @@ import { ExpenseContext } from '../store/expenses-context'
 
 const AllExpenses = () => {
   const expensesCtx = useContext(ExpenseContext)
-  return <ExpensesOutput expenses={expensesCtx.expenses} expensesPeriod="Total" />
+  return <ExpensesOutput expenses={expensesCtx.expenses} expensesPeriod="Total" fallbackText={"No registered expenses found!"}/>
 }
 
 export default AllExpenses
